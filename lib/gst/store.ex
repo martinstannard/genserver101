@@ -3,22 +3,23 @@ defmodule Gst.Store do
 
   # client interface
   def start do
-    GenServer.start(__MODULE__, nil)
+    GenServer.start(__MODULE__, nil, name: :gst)
   end
 
-  def put(pid, key, value) do
-    GenServer.cast(pid, {:put, key, value})
+  def put(key, value) do
+    GenServer.cast(:gst, {:put, key, value})
   end
 
-  def get(pid, key) do
-    GenServer.call(pid, {:get, key})
+  def get(key) do
+    GenServer.call(:gst, {:get, key})
   end
 
-  def all(pid) do
-    GenServer.call(pid, {:all})
+  def all do
+    GenServer.call(:gst, {:all})
+  end
 
-  def clear(pid) do
-    GenServer.cast(pid, {:clear})
+  def clear do
+    GenServer.cast(:gst, {:clear})
   end
 
   # server callbacks
