@@ -14,6 +14,10 @@ defmodule Gst.Store do
     GenServer.call(pid, {:get, key})
   end
 
+  def all(pid) do
+    GenServer.call(pid, {:all})
+  end
+
   # server callbacks
   def init(_) do
     IO.puts "Gst.Store init"
@@ -28,6 +32,11 @@ defmodule Gst.Store do
   def handle_call({:get, key}, _from, state) do
     IO.puts "Gst.Store get"
     {:reply, Map.get(state, key), state}
+  end
+
+  def handle_call({:all}, _from, state) do
+    IO.puts "Gst.Store all"
+    {:reply, state, state}
   end
 
 end
