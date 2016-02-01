@@ -1,7 +1,7 @@
 defmodule Gst.Store do
   use GenServer
 
-  # server implementation
+  # server callbacks
   def init(_) do
     IO.puts "Gst.Store init"
     { :ok, Map.new }
