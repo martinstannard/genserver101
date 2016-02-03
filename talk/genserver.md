@@ -3,14 +3,17 @@ build-lists: true
 ## A Generic Server Behaviour
 
 ---
-# What is GenServer
+# Behaviours
+
+> A behaviour is a way to say: give me a module as argument and I will invoke the following callbacks on it, with these argument and so on.
+-- Jose Valim
+
+> Design patterns for processes
+--Benjamin Tan Wei Hao
 
 > A behaviour module for implementing the server of a client-server relation.
 -- Erlang docs
 
-
-> A behaviour is a way to say: give me a module as argument and I will invoke the following callbacks on it, with these argument and so on.
--- Jose Valim
 
 ---
 # Other Behaviours
