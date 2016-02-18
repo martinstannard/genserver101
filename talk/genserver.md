@@ -11,7 +11,7 @@ build-lists: true
 > A behaviour is a way to say: give me a module as argument and I will invoke the following callbacks on it, with these argument and so on.
 -- Jose Valim
 
-> A behaviour module for implementing the server of a client-server relation.
+> (GenServer is) A behaviour module for implementing the server of a client-server relation.
 -- Erlang docs
 
 
@@ -46,10 +46,12 @@ build-lists: true
 ---
 # Functions
 
+### Main functions
 * start and start_link - calls init
 * call - calls handle_call
 * cast - calls handle_cast
 
+### Other functions
 * stop, reply, whereis, multi_call 
 
 ---
@@ -82,9 +84,7 @@ These are implemented but never called directly by your code
 # Implementation
 
 * Define the callbacks 
-
 * Interface functions (API)
-
 * Usually in the same file
 
 ---
