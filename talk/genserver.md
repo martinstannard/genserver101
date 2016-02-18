@@ -25,38 +25,46 @@ build-lists: true
 
 ---
 
-# Common server features
+# GenServer provides:
 
 * Spawn a separate process
 * Maintain state
 * Handle requests and sending responses
 * Server lifecycle
-
----
-
-# Implementer Provides:
-
-* Initial state
-* Kinds of messages the server handles
-* When to reply or not
-* What to reply with
-* State change
-* Resource cleanup on termination
+* Can be used in a supervision tree
 
 ---
 
 # How does it work?
 
-Genserver expects the module it is used in to define a set of callbacks
+* GenServer defines a number of functions that are used to interface to a particular GenServer instance
 
-The callbacks are invoked when the corresponding GenServer functions are called
+* Genserver expects the module it is used in to define a set of callbacks
 
-GenServer maintains state, message handling, callback invocation
+* The callbacks are invoked when the corresponding GenServer functions are called
 
 ---
-# Callbacks 
+# Functions
 
-* `init(args)` - called on start, sets initial state
+* start and start_link - calls init
+* call - calls handle_call
+* cast - calls handle_cast
+
+* stop, reply, whereis, multi_call 
+
+---
+## Functions (cont.)
+
+* Generally these take a pid or name as their first argument
+* Call the appropriate callback function defined in the module
+
+* GenServer functions are generally wrapped
+* These wrapper functions provide the public interface
+
+---
+# Callbacks
+
+* `init(args)` - called on start, start_link - sets initial state
 * `handle_call(msg, {from, ref} , state)` - handles sync msgs
 * `handle_cast(msg, state)` - handles async messages
 
@@ -67,18 +75,7 @@ GenServer maintains state, message handling, callback invocation
 * `terminate(reason, state)` - server about to terminate
 * `code_change (old_vsn, state, extra)` - hot code swapping
 
-These are implemented and never called directly
-
----
-
-# GenServer functions
-
-* `start` and `start_link` - callback 
-* `call`
-* `cast`
-* `reply`
-
-These form the basis of the client interface
+These are implemented but never called directly by your code
 
 ---
 
